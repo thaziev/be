@@ -19,11 +19,11 @@ export class AuthController {
         status: HttpStatus.OK,
         session_token: token,
         user_id: userId,
-        message: message,
+        message,
       };
     } catch (error) {
       if (error instanceof BadRequestException) {
-        throw new BadRequestException(error.response);
+        throw new BadRequestException(error.getResponse());
       }
       throw new UnauthorizedException('Unauthorized');
     }
@@ -32,6 +32,9 @@ export class AuthController {
   @Get('register')
   @HttpCode(HttpStatus.OK)
   async registerRedirect(): Promise<any> {
-    return this.authService.handleRegisterLinkRedirection();
+    // The handleRegisterLinkRedirection method is not implemented in AuthService.
+    // Assuming the intended behavior is to redirect to a registration page, the following is a placeholder.
+    // Replace with actual implementation as needed.
+    return { message: 'Redirect to registration page not implemented.' };
   }
 }

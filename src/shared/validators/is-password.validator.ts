@@ -1,7 +1,7 @@
 import { ValidateBy, ValidationArguments, ValidationOptions } from 'class-validator'
 import { ConfigService } from '@nestjs/config'
 import configs from '@configs/index'
-import * as bcrypt from 'bcrypt'
+import * as bcrypt from 'bcryptjs'
 
 const configService = new ConfigService(configs())
 
