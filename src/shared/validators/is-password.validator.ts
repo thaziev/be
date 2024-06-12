@@ -1,8 +1,13 @@
 import { ValidateBy, ValidationArguments, ValidationOptions } from 'class-validator'
 import { ConfigService } from '@nestjs/config'
 import configs from '@configs/index'
+import * as bcrypt from 'bcrypt'
 
 const configService = new ConfigService(configs())
+
+export function comparePassword(password: string, passwordHash: string): boolean {
+  return bcrypt.compareSync(password, passwordHash)
+}
 
 export function IsPassword(validationOptions?: ValidationOptions): PropertyDecorator {
   return ValidateBy(
