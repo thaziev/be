@@ -1,5 +1,6 @@
-import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpStatus, Res } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { Response } from 'express';
 import { AuthService } from './auth.service';
 
 @ApiTags('Auth')
@@ -13,5 +14,10 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   async registerRedirect(): Promise<any> {
     return this.authService.handleRegisterLinkRedirection();
+  }
+
+  @Get('register')
+  redirectRegister(@Res() res: Response) {
+    res.status(302).redirect('/register');
   }
 }
